@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="winner-checker.js"></script>
+</head>
+
+<body>
+    <h1 id="gameName">Tic Tac Toe</h1>
+    <h2 id="gameStatus">&nbsp</h2>
+
+    <div>
+    <div id="left" class="bar">
+
+            <div id="stats">
+                    <div id="statsTitle">Stats</div>
+                    <div id="wonByO">Games won by 'O': 0</div>
+                    <div id="wonByX">Games won by 'X': 0</div>
+                    <div id="drawn">Games drawn: 0</div>
+                  </div>
+
+    </div>
+    <div id="right" class="bar">
+            <div id="buttons">
+                    <button id="clearButton" class = "button" onclick="resetBoard()">Reset / New game</button>
+                    <br/>
+                    <button id="changeStartPosition" class = "button" onclick="changeStartingPlayer()">Change starting player</button>
+                    <br/>
+                    <button id="" class = "button" onclick="undoLastMove()">Undo last move</button>
+                  </div>
+    </div>
+    <div id="center">
+            <table>
+                    <tr>
+                        <td id="1" onclick="cellClicked(this)"></td>
+                        <td id="2" onclick="cellClicked(this)" class="vertical"></td>
+                        <td id="3" onclick="cellClicked(this)"></td>
+                    </tr>
+                    <tr>
+                        <td id="4" onclick="cellClicked(this)" class="horizontal"></td>
+                        <td id="5" onclick="cellClicked(this)" class="horizontal vertical"></td>
+                        <td id="6" onclick="cellClicked(this)" class="horizontal"></td>
+                    </tr>
+                    <tr>
+                        <td id="7" onclick="cellClicked(this)"></td>
+                        <td id="8" onclick="cellClicked(this)" class="vertical"></td>
+                        <td id="9" onclick="cellClicked(this)"></td>
+                    </tr>
+                </table>
+    </div>
+    </div>
+    
+
+<script>
+//document.getElementById("gameName").innerHTML = "ASD3";
+
+// function myFunction2() {
+//     document.getElementById("gameName").innerHTML = "ASD9";
+// }
+// window.onload = myFunction2;
+
+</script>
+    
+</body>
+
+</html>

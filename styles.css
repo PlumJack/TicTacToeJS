@@ -1,0 +1,94 @@
+html {
+    height: 100%;
+    background: linear-gradient(0deg, #555555,#CCCCCC 80%) no-repeat;
+}
+
+body {
+    /* background: #AAAAAA; */
+    /* width: 100%;
+    height: 100%; */
+    
+  }
+
+h1 {
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+table {
+    margin: 20px auto;
+    background: cyan;
+  }
+  
+  td {
+    font-size: 48px;
+    height: 100px;
+    text-align: center;
+    width: 100px;
+  }
+
+
+  .vertical {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+  }
+  
+   .horizontal {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+  }
+
+  .button {
+    background-color: purple; /* Green */
+    /* border: none; */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 250px;
+}
+
+  .colorO {
+    /* background: green; */
+    color: green;
+  }
+  
+  .colorX {
+    /* background: red; */
+    color: red;
+  }
+  
+   /* .bar
+  {
+   width:200px; 
+  }  */
+  
+  #left
+  {
+float: left;
+  width:25%;
+    
+  }
+  
+  #right
+  {
+    float: right; 
+  width:25%;
+  }
+  
+  #center
+  {
+   float: left; 
+  width:50%;
+  }
+
+  #stats
+  {
+    font-size: 24px;
+    margin-left:50px;
+  }
