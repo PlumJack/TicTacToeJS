@@ -1,6 +1,6 @@
 "use strict";
 
-function checkAllWinConitions(signToCheck) {
+function checkAllWinConditions(signToCheck) {
 
     return checkWinCondition(1, 2, 3, signToCheck) ||
         checkWinCondition(4, 5, 6, signToCheck) ||
@@ -13,7 +13,7 @@ function checkAllWinConitions(signToCheck) {
 }
 
 function checkWinCondition(first, second, third, signToCheck) {
-    return document.getElementById(first).innerHTML == signToCheck &&
-        document.getElementById(second).innerHTML == signToCheck &&
-        document.getElementById(third).innerHTML == signToCheck;
+    return board[first - 1] == signToCheck &&
+        board[second - 1] == signToCheck &&
+        board[third - 1] == signToCheck;
 }

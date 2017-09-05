@@ -1,8 +1,8 @@
 "use strict";
 
-const signO = 'O';
-const signX = 'X';
-const gameStatus = "gameStatus";
+const signO = 'O',
+signX = 'X',
+gameStatus = "gameStatus";
 
 var startingPlayer = signO,
     nextMove = signO,
@@ -10,16 +10,18 @@ var startingPlayer = signO,
     moves = [],
     gamesWonByO = 0,
     gamesWonByX = 0,
-    gamesDrawn = 0;
+    gamesDrawn = 0,
+    board = ['','','','','','','','',''];
+    //board = [null,null,null,null,null,null,null,null,null];
 
 function cellClicked(obj) {
-    if (document.getElementById(obj.id).innerHTML.length === 0 && !gameEnded) {
+    if (obj.innerHTML.length === 0 && !gameEnded) {
         
         fillFieldWithSign(obj);
         addIdToMoves(obj.id);
         gameEnded = moves.length === 9;
 
-        if (checkAllWinConitions(nextMove)) {
+        if (checkAllWinConditions(nextMove)) {
             gameEnded = true;
             changeGameStatus("'" + nextMove + "'" + " WON");
             setTimeout(function(){ alert("'" + nextMove + "'" + " WON"); }, 10);
@@ -35,11 +37,13 @@ function cellClicked(obj) {
             changeNextMove();
             changeGameStatus("'" + nextMove + "'" + " is next");
         }
-    }
+    }   
+
 }
 
 function addIdToMoves(id){
     moves.push(id);
+    
 }
 
 function changeGameStatus(text){
@@ -47,8 +51,10 @@ function changeGameStatus(text){
 }
 
 function fillFieldWithSign(obj){
-    document.getElementById(obj.id).innerHTML = nextMove;
-    document.getElementById(obj.id).classList.add("color" + nextMove);
+    obj.innerHTML = nextMove;
+    obj.classList.add("color" + nextMove);
+    board[parseInt(obj.id)-1] = nextMove;
+    //board[1] = nextMove;
 }
 
 function addPointToCurrentPlayer(){
@@ -64,6 +70,7 @@ function resetBoard() {
         document.getElementById(i).innerHTML = '';
         document.getElementById(i).classList.remove("colorO");
         document.getElementById(i).classList.remove("colorX");
+        board[i-1] = '';
     }
     nextMove = startingPlayer;
     gameEnded = false;
@@ -86,8 +93,9 @@ function undoLastMove() {
         popped.innerHTML = '';
         popped.classList.remove("colorO");
         popped.classList.remove("colorX");
+        board[parseInt(popped.id)-1] = nextMove;
         changeNextMove();
-        document.getElementById(gameStatus).innerHTML = "'" + nextMove + "'" + " is next";
+        changeGameStatus("'" + nextMove + "'" + " is next");
     }
 }
 
