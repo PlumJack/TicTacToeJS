@@ -12,7 +12,6 @@ var startingPlayer = signO,
     gamesWonByX = 0,
     gamesDrawn = 0,
     board = ['','','','','','','','',''];
-    //board = [null,null,null,null,null,null,null,null,null];
 
 function cellClicked(obj) {
     if (obj.innerHTML.length === 0 && !gameEnded) {
@@ -54,7 +53,6 @@ function fillFieldWithSign(obj){
     obj.innerHTML = nextMove;
     obj.classList.add("color" + nextMove);
     board[parseInt(obj.id)-1] = nextMove;
-    //board[1] = nextMove;
 }
 
 function addPointToCurrentPlayer(){
