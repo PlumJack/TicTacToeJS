@@ -1,96 +1,99 @@
-// var hello = 'Hello World';
-// document.write(hello);
+"use strict";
 
-var startingPlayer = 'O';
-var nextMove = 'O';
-var gameEnded = false;
+const signO = 'O';
+const signX = 'X';
+const gameStatus = "gameStatus";
 
-var moves = [];
-
-var gamesWonByO = 0;
-var gamesWonByX = 0;
-var gamesDrawn = 0;
+var startingPlayer = signO,
+    nextMove = signO,
+    gameEnded = false,
+    moves = [],
+    gamesWonByO = 0,
+    gamesWonByX = 0,
+    gamesDrawn = 0;
 
 function cellClicked(obj) {
-    if (document.getElementById(obj.id).innerHTML.length == 0 && !gameEnded) {
-        document.getElementById(obj.id).innerHTML = nextMove;
-        document.getElementById(obj.id).classList.remove("colorO");
-        document.getElementById(obj.id).classList.remove("colorX");
-        document.getElementById(obj.id).classList.add("color"+nextMove);
+    if (document.getElementById(obj.id).innerHTML.length === 0 && !gameEnded) {
         
+        fillFieldWithSign(obj);
+        addIdToMoves(obj.id);
+        gameEnded = moves.length === 9;
 
-        moves.push(obj.id);
-        if(moves.length == 9){
-            gameEnded = true;  
-        }
-
-        if(checkAllWinConitions(nextMove)){
+        if (checkAllWinConitions(nextMove)) {
             gameEnded = true;
-            document.getElementById("gameStatus").innerHTML = "'" + nextMove + "'" + " WON";
-            alert("'" + nextMove + "'" + " WON");
-            if(nextMove == 'O'){
-                gamesWonByO++;
-            } else {
-                gamesWonByX++;
-            }
+            changeGameStatus("'" + nextMove + "'" + " WON");
+            setTimeout(function(){ alert("'" + nextMove + "'" + " WON"); }, 10);
+            addPointToCurrentPlayer();
             updateStats();
-        } else if (gameEnded){
-            gamesDrawn++;
-            document.getElementById("gameStatus").innerHTML = "DRAW";
-            alert("DRAW");
+        } else if (gameEnded) {
+            addDraw();
+            changeGameStatus("DRAW");
+            setTimeout(function(){ alert("DRAW"); }, 10);
             updateStats();
         }
         else {
-            
             changeNextMove();
+            changeGameStatus("'" + nextMove + "'" + " is next");
         }
-
     }
+}
+
+function addIdToMoves(id){
+    moves.push(id);
+}
+
+function changeGameStatus(text){
+    document.getElementById(gameStatus).innerHTML = text;
+}
+
+function fillFieldWithSign(obj){
+    document.getElementById(obj.id).innerHTML = nextMove;
+    document.getElementById(obj.id).classList.add("color" + nextMove);
+}
+
+function addPointToCurrentPlayer(){
+    nextMove === signO ? gamesWonByO++ : gamesWonByX++;
+}
+
+function addDraw(){
+    gamesDrawn++;
 }
 
 function resetBoard() {
-    document.getElementById(1).innerHTML = '';
-    document.getElementById(2).innerHTML = '';
-    document.getElementById(3).innerHTML = '';
-    document.getElementById(4).innerHTML = '';
-    document.getElementById(5).innerHTML = '';
-    document.getElementById(6).innerHTML = '';
-    document.getElementById(7).innerHTML = '';
-    document.getElementById(8).innerHTML = '';
-    document.getElementById(9).innerHTML = '';
+    for (var i = 1; i < 10; i++) {
+        document.getElementById(i).innerHTML = '';
+        document.getElementById(i).classList.remove("colorO");
+        document.getElementById(i).classList.remove("colorX");
+    }
     nextMove = startingPlayer;
     gameEnded = false;
     moves = [];
-    document.getElementById("gameStatus").innerHTML = '&nbsp';
+    changeGameStatus("'" + nextMove + "'" + " is next");
 }
 
-function changeStartingPlayer(){
-    if (startingPlayer == 'O') {
-        startingPlayer = 'X';
-    } else {
-        startingPlayer = 'O';
-    }
+function changeStartingPlayer() {
+    startingPlayer === signO ? startingPlayer = signX : startingPlayer = signO;
 }
 
-function changeNextMove(){
-    if (nextMove == 'O') {
-        nextMove = 'X';
-    } else {
-        nextMove = 'O';
-    }
+function changeNextMove() {
+    nextMove === signO ? nextMove = signX : nextMove = signO;
 }
 
-function undoLastMove(){
-    
-    if(moves.length>0 && !gameEnded){
-        document.getElementById(moves.pop()).innerHTML = '';
+function undoLastMove() {
+
+    if (moves.length > 0 && !gameEnded) {
+        var popped = document.getElementById(moves.pop());
+        popped.innerHTML = '';
+        popped.classList.remove("colorO");
+        popped.classList.remove("colorX");
         changeNextMove();
+        document.getElementById(gameStatus).innerHTML = "'" + nextMove + "'" + " is next";
     }
 }
 
-function updateStats(){
-        document.getElementById("statsTitle").innerHTML = "Stats";
-        document.getElementById("wonByO").innerHTML = "Games won by 'O': " + gamesWonByO;
-        document.getElementById("wonByX").innerHTML = "Games won by 'X': " + gamesWonByX;
-        document.getElementById("drawn").innerHTML = "Games drawn: " + gamesDrawn;
+function updateStats() {
+    document.getElementById("statsTitle").innerHTML = "Stats";
+    document.getElementById("wonByO").innerHTML = "Games won by 'O': " + gamesWonByO;
+    document.getElementById("wonByX").innerHTML = "Games won by 'X': " + gamesWonByX;
+    document.getElementById("drawn").innerHTML = "Games drawn: " + gamesDrawn;
 }

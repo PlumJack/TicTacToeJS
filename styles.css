@@ -6,8 +6,7 @@ html {
 body {
     /* background: #AAAAAA; */
     /* width: 100%;
-    height: 100%; */
-    
+    height: 100%; */  
   }
 
 h1 {
@@ -42,7 +41,7 @@ table {
   }
 
   .button {
-    background-color: purple; /* Green */
+    background-color: purple;
     /* border: none; */
     color: white;
     padding: 15px 32px;
@@ -54,19 +53,12 @@ table {
 }
 
   .colorO {
-    /* background: green; */
     color: green;
   }
   
   .colorX {
-    /* background: red; */
     color: red;
   }
-  
-   /* .bar
-  {
-   width:200px; 
-  }  */
   
   #left
   {
