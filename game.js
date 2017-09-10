@@ -20,7 +20,7 @@ function cellClicked(obj) {
         addIdToMoves(obj.id);
         gameEnded = moves.length === 9;
 
-        if (checkAllWinConditions(nextMove)) {
+        if (winnerChecker.checkAllWinConditions(nextMove)) {
             gameEnded = true;
             changeGameStatus("'" + nextMove + "'" + " WON");
             setTimeout(function(){ alert("'" + nextMove + "'" + " WON"); }, 10);
@@ -103,3 +103,4 @@ function updateStats() {
     document.getElementById("wonByX").innerHTML = "Games won by 'X': " + gamesWonByX;
     document.getElementById("drawn").innerHTML = "Games drawn: " + gamesDrawn;
 }
+

@@ -9,7 +9,7 @@ describe("winConditionsTests", function () {
         board = ['O', 'O', 'O', 'X', 'X', '', '', '', ''];
 
         //when
-        var result = checkAllWinConditions(signO);
+        var result = winnerChecker.checkAllWinConditions(signO);
 
         //then
         expect(result).toEqual(true);
@@ -19,35 +19,38 @@ describe("winConditionsTests", function () {
         //given 
         board = ['X', 'X', 'X', 'O', '', 'O', 'O', '', 'O'];
         //when
-        var result = checkAllWinConditions(signX);
+        var result = winnerChecker.checkAllWinConditions(signX);
 
         //then
         expect(result).toEqual(true);
     });
 
-    it('shouldReturnForForSignOWhen3SignsOAreNotInAnyLine', function () {
+    it('shouldReturnFalseForSignOWhen3SignsOAreNotInAnyLine', function () {
         //given 
         board = ['O', 'O', '', '', 'X', '', '', '', ''];
 
         //when
-        var result = checkAllWinConditions(signO);
+        var result = winnerChecker.checkAllWinConditions(signO);
 
         //then
         expect(result).toEqual(false);
     });
 
-    it('shouldReturnForForSignXWhen3SignsXAreNotInAnyLine', function () {
+    it('Should return false for sign X when 3 signs X are not in any line', function () {
         //given 
         board = ['O', 'O', '', '', 'X', '', '', '', ''];
 
         //when
-        var result = checkAllWinConditions(signX);
+        var result = winnerChecker.checkAllWinConditions(signX);
 
         //then
         expect(result).toEqual(false);
     });
 
 });
+
+
+/*
 
 describe("specificWinConditionTests", function () {
 
@@ -406,4 +409,9 @@ describe("specificWinConditionTests", function () {
         //then
         expect(result).toEqual(false);
     });
+
+
+
 });
+
+*/
