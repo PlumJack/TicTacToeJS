@@ -1,6 +1,6 @@
 "use strict";
 
-var winnerChecker = (function (signToCheck) {
+var winnerChecker = (function () {
 
     var checkWinCondition = function (first, second, third, signToCheck) {
         return board[first - 1] == signToCheck &&
